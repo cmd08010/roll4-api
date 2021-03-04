@@ -39,7 +39,7 @@ router.post('/campaigns/:id/sessions', requireToken, (req, res, next) => {
 
 // Patch
 
-router.patcher('/campaigns/:id/sessions/:id', (req, res, next) => {
+router.patch('/campaigns/:id/sessions/:id', (req, res, next) => {
   delete req.body.example.owner
   const sessionData = req.body.session
 
@@ -56,5 +56,20 @@ router.patcher('/campaigns/:id/sessions/:id', (req, res, next) => {
 })
 
 // DELETE
+
+router.delete('/campaigns/:id/sessions/:id', (req, res, next) => {
+  const campaignId = req.params.id
+  const sessionId = req.params.sessionid
+  Campaign.findById(campaignId)
+    .then(handle404)
+    .then(campaign => {
+      console.log(campaign, "this is my campaign from my session route")
+      campaign.sessions.id(sessionId).remove()
+      return campaign.save()
+    })
+    .then(() => res.sendStatus(204))
+    .catch(next)
+})
+
 
 module.exports = router
