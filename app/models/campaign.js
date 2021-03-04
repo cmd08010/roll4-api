@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+const entrySchema = require('./entry')
 
-const exampleSchema = new mongoose.Schema({
+const campaignSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true
@@ -9,6 +10,7 @@ const exampleSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  entries: [entrySchema],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -18,4 +20,4 @@ const exampleSchema = new mongoose.Schema({
   timestamps: true
 })
 
-module.exports = mongoose.model('Example', exampleSchema)
+module.exports = mongoose.model('Campaign', campaignSchema)
