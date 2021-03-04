@@ -25,8 +25,18 @@ router.get('/campaign/:id/entries', requireToken, (req, res, next) => {
 })
 
 // POST
-router.post('/entries/:id', requireToken, (req, res, next) => {
-
+router.post('/campaign/:id/entries', requireToken, (req, res, next) => {
+  const campaignId = req.params.id
+  const entryData = req.body.entry
+  Campaign.findById(campaignId)
+    .then(handle404)
+    .then(campaign => {
+// How can I store my campaign id?
+      campaign.entries.push(entryData)
+      return campaign.save()
+    })
+    .then(campaign => console.log(campaign))
+    .catch(next)
 })
 
 // Patch

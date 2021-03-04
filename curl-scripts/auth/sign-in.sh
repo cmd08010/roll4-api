@@ -15,3 +15,5 @@ curl "${API}${URL_PATH}" \
   }'
 
 echo
+
+ # EMAIL="cmd@cmd.com" PASSWORD="cmd" sh curl-scripts/auth/sign-in.sh

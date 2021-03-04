@@ -50,7 +50,7 @@ router.get('/campaigns/:id', requireToken, (req, res, next) => {
   Campaign.findById(req.params.id)
     .then(handle404)
     // if `findById` is succesful, respond with 200 and "example" JSON
-    .then(example => res.status(200).json({ example: example.toObject() }))
+    .then(campaign => res.status(200).json({ example: example.toObject() }))
     // if an error occurs, pass it to the handler
     .catch(next)
 })
@@ -59,13 +59,13 @@ router.get('/campaigns/:id', requireToken, (req, res, next) => {
 // POST /examples
 router.post('/campaigns', requireToken, (req, res, next) => {
   // set owner of new example to be current user
-  req.body.example.owner = req.user.id
-
-  Campaign.create(req.body.example)
+  req.body.campaign.owner = req.user.id
+console.log(req.body)
+  Campaign.create(req.body.campaign)
     // respond to succesful `create` with status 201 and JSON of new "example"
     .then(campaign => {
       console.log(campaign, 'my created campaign response from db in campaign routes ')
-      res.status(201).json({ example: campaign.toObject() })
+      res.status(201).json({ campaign: campaign })
     })
     // if an error occurs, pass it off to our error handler
     // the error handler needs the error message and the `res` object so that it
