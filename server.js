@@ -62,7 +62,7 @@ app.use(userRoutes)
 app.use(campaignRoutes)
 app.use(sessionRoutes)
 
-app.use(express.static(__dirname + '/../roll4-client'))
+app.use(express.static(__dirname))
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname+'/index.html'))
