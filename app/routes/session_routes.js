@@ -27,6 +27,7 @@ router.get('/campaigns/:id/sessions', requireToken, (req, res, next) => {
 router.post('/campaigns/:id/sessions', requireToken, (req, res, next) => {
   const campaignId = req.params.id
   const sessionData = req.body.session
+  sessionData.owner = campaignId
   Campaign.findById(campaignId)
     .then(handle404)
     .then(campaign => {
@@ -39,37 +40,37 @@ router.post('/campaigns/:id/sessions', requireToken, (req, res, next) => {
 
 // Patch
 
-router.patch('/campaigns/:id/sessions/:id', (req, res, next) => {
-  delete req.body.example.owner
+router.patch('/campaigns/:id/sessions/:sessionid', requireToken, (req, res, next) => {
+  delete req.body.session.owner
   const sessionData = req.body.session
+  sessionData.owner = req.params.id
 
   Campaign.findById(req.params.id)
     .then(handle404)
     .then(campaign => {
       requireOwnership(req, campaign)
-      const session = campaign.session.id(req.params.sessionid)
+      const session = campaign.sessions.id(req.params.sessionid)
       session.set(sessionData)
       return campaign.save()
     })
-    .then(() => res.sendStatus(204))
+    .then(response => {
+      res.sendStatus(204)
+    })
     .catch(next)
 })
 
 // DELETE
 
-router.delete('/campaigns/:id/sessions/:id', (req, res, next) => {
-  const campaignId = req.params.id
+router.delete('/campaigns/:id/sessions/:sessionid', requireToken, (req, res, next) => {
   const sessionId = req.params.sessionid
-  Campaign.findById(campaignId)
+  Campaign.findById(req.params.id)
     .then(handle404)
     .then(campaign => {
-      console.log(campaign, "this is my campaign from my session route")
       campaign.sessions.id(sessionId).remove()
       return campaign.save()
     })
     .then(() => res.sendStatus(204))
     .catch(next)
 })
-
 
 module.exports = router

@@ -11,7 +11,8 @@ const sessionSchema = new mongoose.Schema({
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Campaign'
+    ref: 'Campaign',
+    required: true
   }
 }, {
   timestamps: true
