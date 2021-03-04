@@ -43,13 +43,12 @@ router.post('/campaigns/:id/sessions', requireToken, (req, res, next) => {
 router.patch('/campaigns/:id/sessions/:sessionid', requireToken, (req, res, next) => {
   delete req.body.session.owner
   const sessionData = req.body.session
-  sessionData.owner = req.params.id
-
   Campaign.findById(req.params.id)
     .then(handle404)
     .then(campaign => {
       requireOwnership(req, campaign)
       const session = campaign.sessions.id(req.params.sessionid)
+      console.log(campaign.sessions, "my sesson", req.params.sessionid, "my session id")
       session.set(sessionData)
       return campaign.save()
     })

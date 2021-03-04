@@ -11,8 +11,7 @@ curl "${API}${URL_PATH}/${ID}/sessions" \
   --data '{
     "session": {
       "text": "'"${TEXT}"'",
-      "title": "'"${TITLE}"'",
-      "owner": "'"${OWNER}"'"
+      "title": "'"${TITLE}"'"
     }
   }'
 
