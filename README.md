@@ -189,8 +189,8 @@ Users can create an account and add new campaigns and entries for your campaigns
 <td>/campaigns/:id/sessions/:id</td>
 <td>session data</td>
 <td>token</td>
-<td>200, Ok</td>
-<td>session Obj</td>
+<td>204, Ok</td>
+<td> n/a </td>
 </tr>
 </tr>
 <tr>
