@@ -2,6 +2,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const path = require('path')
 
 // require route files
 const userRoutes = require('./app/routes/user_routes')
@@ -61,6 +62,14 @@ app.use(userRoutes)
 app.use(campaignRoutes)
 app.use(sessionRoutes)
 
+
+app.get('/', (req, res) => {
+  res.sendFile('../roll4-client/index.html')
+})
+
+app.get('/*', (req, res, next) => {
+  res.sendFile('../roll4-client/index.html')
+})
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be
 // passed any error messages from them
