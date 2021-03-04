@@ -30,7 +30,6 @@ router.post('/campaigns/:id/sessions', requireToken, (req, res, next) => {
   Campaign.findById(campaignId)
     .then(handle404)
     .then(campaign => {
-      console.log("test")
       campaign.sessions.push(sessionData)
       return campaign.save()
     })
