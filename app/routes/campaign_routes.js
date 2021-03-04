@@ -45,7 +45,7 @@ router.get('/campaigns', requireToken, (req, res, next) => {
 
 // SHOW
 // GET /examples/5a7db6c74d55bc51bdf39793
-router.get('/examples/:id', requireToken, (req, res, next) => {
+router.get('/campaigns/:id', requireToken, (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
   Campaign.findById(req.params.id)
     .then(handle404)
@@ -57,14 +57,15 @@ router.get('/examples/:id', requireToken, (req, res, next) => {
 
 // CREATE
 // POST /examples
-router.post('/examples', requireToken, (req, res, next) => {
+router.post('/campaigns', requireToken, (req, res, next) => {
   // set owner of new example to be current user
   req.body.example.owner = req.user.id
 
   Campaign.create(req.body.example)
     // respond to succesful `create` with status 201 and JSON of new "example"
-    .then(example => {
-      res.status(201).json({ example: example.toObject() })
+    .then(campaign => {
+      console.log(campaign, 'my created campaign response from db in campaign routes ')
+      res.status(201).json({ example: campaign.toObject() })
     })
     // if an error occurs, pass it off to our error handler
     // the error handler needs the error message and the `res` object so that it
@@ -74,7 +75,7 @@ router.post('/examples', requireToken, (req, res, next) => {
 
 // UPDATE
 // PATCH /examples/5a7db6c74d55bc51bdf39793
-router.patch('/examples/:id', requireToken, removeBlanks, (req, res, next) => {
+router.patch('/campaigns/:id', requireToken, removeBlanks, (req, res, next) => {
   // if the client attempts to change the `owner` property by including a new
   // owner, prevent that by deleting that key/value pair
   delete req.body.example.owner
