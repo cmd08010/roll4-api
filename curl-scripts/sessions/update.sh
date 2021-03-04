@@ -9,7 +9,7 @@ curl "${API}${URL_PATH}/${ID}/sessions/${SESSIONID}" \
   --header "Content-Type: application/json" \
 --header "Authorization: Bearer ${TOKEN}" \
 --data '{
-    "campaign": {
+    "session": {
       "text": "'"${TEXT}"'"
     }
   }'
