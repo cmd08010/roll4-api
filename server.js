@@ -65,11 +65,11 @@ app.use(sessionRoutes)
 // app.use(express.static(__dirname+'/../'))
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join('../roll4-client/index.html'))
+  res.send('Deployed')
 })
 
 app.get('/*', (req, res, next) => {
-  res.sendFile('../roll4-client/index.html')
+  res.send('Deployed')
 })
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be
