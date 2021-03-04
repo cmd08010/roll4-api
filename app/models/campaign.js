@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const entrySchema = require('./entry')
+const sessionSchema = require('./session')
 
 const campaignSchema = new mongoose.Schema({
   title: {
@@ -10,7 +10,7 @@ const campaignSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  entries: [entrySchema],
+  sessions: [sessionSchema],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

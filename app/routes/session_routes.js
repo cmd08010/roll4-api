@@ -2,7 +2,7 @@ const express = require('express')
 const passport = require('passport')
 
 const Campaign = require('../models/campaign')
-const Entry = require("../models/entry")
+const Session = require('../models/session')
 
 const { handle404, requireOwnership } = require('../../lib/custom_errors')
 const removeBlanks = require('../../lib/remove_blank_fields')
@@ -13,29 +13,27 @@ const router = express.Router()
 
 // Get
 
-router.get('/campaign/:id/entries', requireToken, (req, res, next) => {
+router.get('/campaigns/:id/sessions', requireToken, (req, res, next) => {
   const campaignId = req.params.id
   Campaign.findById(campaignId)
     .then(handle404)
     .then(campaign => {
-// How can I store my campaign id?
-      res.json({ entries: campaign.entries })
+      res.json({ sessions: campaign.sessions })
     })
     .catch(next)
 })
 
 // POST
-router.post('/campaign/:id/entries', requireToken, (req, res, next) => {
+router.post('/campaigns/:id/sessions', requireToken, (req, res, next) => {
   const campaignId = req.params.id
-  const entryData = req.body.entry
+  const sessionData = req.body.session
   Campaign.findById(campaignId)
     .then(handle404)
     .then(campaign => {
-// How can I store my campaign id?
-      campaign.entries.push(entryData)
+      campaign.sessions.push(sessionData)
       return campaign.save()
     })
-    .then(campaign => console.log(campaign))
+    .then(campaign => res.json({ campaign: campaign }))
     .catch(next)
 })
 

@@ -17,4 +17,4 @@ curl "${API}${URL_PATH}" \
 
 echo
 
-# TITLE="First campaign" TEXT="lets go" TOKEN=00d82b45d56184bab1e1598f2104a322 sh curl-scripts/campaigns/create.sh
+# TITLE="New campaign" TEXT="lets add an entry" TOKEN=d267ef5b7ab8c3ad424d95bb041b9c3b sh curl-scripts/campaigns/create.sh

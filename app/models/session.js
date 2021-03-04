@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 
-const entrySchema = new mongoose.Schema({
+const sessionSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true
   },
-  content: {
+  text: {
     type: String,
     required: true
   },
@@ -17,4 +17,4 @@ const entrySchema = new mongoose.Schema({
   timestamps: true
 })
 
-module.exports = entrySchema
+module.exports = sessionSchema
