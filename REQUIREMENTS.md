@@ -12,16 +12,16 @@ Be deployed online, where the rest of the world can access it.
 
 ### Version Control
 Demonstrate using version control by:
-1.  [ ]  Sharing your work through a git repository hosted on Github.
-1.  [ ]  Making frequent, cohesive commits dating back to the **first day**
+1.  [x ]  Sharing your work through a git repository hosted on Github.
+1.  [x ]  Making frequent, cohesive commits dating back to the **first day**
 of the project week.
-1.  [ ]  1 commit on the first day of project week on both repos.
+1.  [x ]  1 commit on the first day of project week on both repos.
 1.  [ ]  At least 1 commit every day during project week (not necessarily on both repos).
 
 ### Documentation
 Produce documentation in the form of a **README**, which must:
-1.  [ ] Create 2 Github repos (one for your front-end and one for your back-end)
-1.  [ ] Pin both repositories on GitHub as a Popular Repository
+1.  [x ] Create 2 Github repos (one for your front-end and one for your back-end)
+1.  [x ] Pin both repositories on GitHub as a Popular Repository
 1.  [ ] Each repo will need a README.md file with a link to the other repo and an explanation of the what the app does and how it works.
 1.  [ ] Each repo must contain the link to both deployed sites
 1.  [ ] Complete the repository `Description` field and `Website` field with a meaningful sentence description of the application and link to the live URL
@@ -37,8 +37,8 @@ Your back-end repo's README should also have
 1.  [ ] Link to Entity Relationship Diagram (ERD).
 
 ### Auth Specifications
-1.  [ ] Signup with email, password, and password confirmation.
-1.  [ ] Login with email and password.
+1.  [x ] Signup with email, password, and password confirmation.
+1.  [x ] Login with email and password.
 1.  [ ] Logout when logged in.
 1.  [ ] Change password with current and new password.
 1.  [ ] Signup and Signin must only be available to not signed in users.

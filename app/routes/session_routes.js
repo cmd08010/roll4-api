@@ -38,6 +38,18 @@ router.post('/campaigns/:id/sessions', requireToken, (req, res, next) => {
     .catch(next)
 })
 
+router.get('/campaigns/:id/sessions/:sessionid', requireToken, (req, res, next) => {
+  const campaignId = req.params.id
+  Campaign.findById(campaignId)
+    .then(handle404)
+    .then(campaign => {
+      requireOwnership(req, campaign)
+      const session = campaign.sessions.id(req.params.sessionid)
+      res.json({ session: session })
+    })
+    .catch(next)
+})
+
 // Patch
 
 router.patch('/campaigns/:id/sessions/:sessionid', requireToken, (req, res, next) => {

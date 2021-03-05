@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const path = require('path')
+const session = require('express-session')
 
 // require route files
 const userRoutes = require('./app/routes/user_routes')
@@ -36,6 +37,11 @@ mongoose.connect(db, {
 
 // instantiate express application object
 const app = express()
+
+// add session auth stuff to use back buttons
+// app.use(session({
+//
+// }))
 
 // set CORS headers on response from this API using the `cors` NPM package
 // `CLIENT_ORIGIN` is an environment variable that will be set on Heroku
