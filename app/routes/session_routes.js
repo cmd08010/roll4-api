@@ -34,7 +34,10 @@ router.post('/campaigns/:id/sessions', requireToken, (req, res, next) => {
       campaign.sessions.push(sessionData)
       return campaign.save()
     })
-    .then(campaign => res.json({ campaign: campaign }))
+    .then(campaign => {
+      const session = campaign.sessions[campaign.sessions.length - 1]
+      res.json({ campaign: campaign, session: session })
+    })
     .catch(next)
 })
 
