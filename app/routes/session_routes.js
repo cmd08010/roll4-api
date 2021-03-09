@@ -23,6 +23,8 @@ router.get('/campaigns/:id/sessions', requireToken, (req, res, next) => {
     .catch(next)
 })
 
+
+
 // POST
 router.post('/campaigns/:id/sessions', requireToken, (req, res, next) => {
   const campaignId = req.params.id

@@ -50,8 +50,22 @@ router.get('/campaigns/:id', requireToken, (req, res, next) => {
   Campaign.findById(req.params.id)
     .then(handle404)
     // if `findById` is succesful, respond with 200 and "campaign" JSON
-    .then(campaign => res.status(200).json({ campaign: campaign.toObject() }))
+    .then(campaign => res.status(200).json({ campaign: campaign }))
     // if an error occurs, pass it to the handler
+    .catch(next)
+})
+
+// Get latest Campaigns
+router.get('/home', requireToken, (req, res, next) => {
+  // req.params.id will be set based on the `:id` in the route
+  Campaign.find({ owner: req.user._id }).sort({'updatedAt': -1}).limit(1)
+    .then(handle404)
+    // if `findById` is succesful, respond with 200 and "campaign" JSON
+    .then(campaign => {
+      console.log(campaign[0], "this is my campaign I should be sending")
+      res.status(200).json({ campaign: campaign[0], sessions: campaign[0].sessions })
+     })
+    // if an error occurs, pass it to the handle
     .catch(next)
 })
 
@@ -84,16 +98,17 @@ router.patch('/campaigns/:id', requireToken, removeBlanks, (req, res, next) => {
   Campaign.findById(req.params.id)
     .then(handle404)
     .then(campaign => {
-      console.log(campaign, "this is my campaign im patching")
       // pass the `req` object and the Mongoose record to `requireOwnership`
       // it will throw an error if the current user isn't the owner
       requireOwnership(req, campaign)
-
       // pass the result of Mongoose's `.update` to the next `.then`
-      return campaign.updateOne(req.body.campaign)
+      return Campaign.findOneAndUpdate(req.params.id, req.body.campaign, { new: true })
     })
     // if that succeeded, return 204 and no JSON
-    .then(() => res.sendStatus(204))
+    .then((campaign) => {
+      console.log(campaign, "my db response")
+      res.status(204).json({ campaign: campaign })
+    })
     // if an error occurs, pass it to the handler
     .catch(next)
 })
