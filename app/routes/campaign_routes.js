@@ -64,7 +64,7 @@ router.get('/home', requireToken, (req, res, next) => {
     .then(campaign => {
       console.log(campaign[0], "this is my campaign I should be sending")
       res.status(200).json({ campaign: campaign[0], sessions: campaign[0].sessions })
-     })
+    })
     // if an error occurs, pass it to the handle
     .catch(next)
 })
@@ -98,16 +98,14 @@ router.patch('/campaigns/:id', requireToken, removeBlanks, (req, res, next) => {
   Campaign.findById(req.params.id)
     .then(handle404)
     .then(campaign => {
-      // pass the `req` object and the Mongoose record to `requireOwnership`
-      // it will throw an error if the current user isn't the owner
       requireOwnership(req, campaign)
       // pass the result of Mongoose's `.update` to the next `.then`
-      return Campaign.findOneAndUpdate(req.params.id, req.body.campaign, { new: true })
+      return Campaign.findOneAndUpdate({ _id: req.params.id }, { title: req.body.campaign.title, description: req.body.campaign.description }, { new: true })
     })
     // if that succeeded, return 204 and no JSON
     .then((campaign) => {
-      console.log(campaign, "my db response")
-      res.status(204).json({ campaign: campaign })
+      console.log(campaign, "my db response from updating the camaign")
+      res.status(201).json({ campaign: campaign })
     })
     // if an error occurs, pass it to the handler
     .catch(next)

@@ -65,12 +65,11 @@ router.patch('/campaigns/:id/sessions/:sessionid', requireToken, (req, res, next
     .then(campaign => {
       requireOwnership(req, campaign)
       const session = campaign.sessions.id(req.params.sessionid)
-      console.log(campaign.sessions, "my sesson", req.params.sessionid, "my session id")
       session.set(sessionData)
       return campaign.save()
     })
     .then(response => {
-      res.sendStatus(204)
+      res.status(201).json({ campaign: response })
     })
     .catch(next)
 })

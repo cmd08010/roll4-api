@@ -11,6 +11,9 @@ const campaignSchema = new mongoose.Schema({
     required: true
   },
   sessions: [sessionSchema],
+  members: {
+    type: String
+  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -18,6 +21,13 @@ const campaignSchema = new mongoose.Schema({
   }
 }, {
   timestamps: true
+  // findAndModify: {
+  //   // remove `hashedPassword` field when we call `.toObject`
+  //   transform: (_doc, user) => {
+  //     delete user.hashedPassword
+  //     return user
+  //   }
+  // }
 })
 
 module.exports = mongoose.model('Campaign', campaignSchema)
