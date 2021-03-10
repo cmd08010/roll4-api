@@ -50,7 +50,7 @@ router.get('/campaigns/:id', requireToken, (req, res, next) => {
   Campaign.findById(req.params.id)
     .then(handle404)
     // if `findById` is succesful, respond with 200 and "campaign" JSON
-    .then(campaign => res.status(200).json({ campaign: campaign }))
+    .then(campaign => res.status(200).json({ campaign: campaign, sessions: campaign.sessions }))
     // if an error occurs, pass it to the handler
     .catch(next)
 })
@@ -62,8 +62,11 @@ router.get('/home', requireToken, (req, res, next) => {
     .then(handle404)
     // if `findById` is succesful, respond with 200 and "campaign" JSON
     .then(campaign => {
-      console.log(campaign[0], "this is my campaign I should be sending")
-      res.status(200).json({ campaign: campaign[0], sessions: campaign[0].sessions })
+      if (campaign[0]) {
+        res.status(200).json({ campaign: campaign[0], sessions: campaign[0].sessions })
+      } else {
+        res.sendStatus(204)
+      }
     })
     // if an error occurs, pass it to the handle
     .catch(next)
@@ -79,7 +82,6 @@ router.post('/campaigns', requireToken, (req, res, next) => {
   Campaign.create(req.body.campaign)
     // respond to succesful `create` with status 201 and JSON of new "campaign"
     .then(campaign => {
-      console.log(campaign, 'my created campaign response from db in campaign routes ')
       res.status(201).json({ campaign: campaign })
     })
     // if an error occurs, pass it off to our error handler
