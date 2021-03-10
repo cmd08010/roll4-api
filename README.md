@@ -124,7 +124,7 @@ Users can create an account and add new campaigns and entries for your campaigns
 <td>/campaigns/:id</td>
 <td>campaign data</td>
 <td>token</td>
-<td>200, Ok</td>
+<td>201, Ok</td>
 <td>campaign Obj</td>
 </tr>
 <tr>
@@ -198,7 +198,7 @@ Users can create an account and add new campaigns and entries for your campaigns
 <td>/campaigns/:id/sessions/:id</td>
 <td>session data</td>
 <td>token</td>
-<td>200, Ok</td>
+<td>201, Ok</td>
 <td>session Obj</td>
 </tr>
 <tr>
