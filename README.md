@@ -222,6 +222,6 @@ Users can create an account and add new campaigns and entries for your campaigns
 </table>
 
 ### ERD
-![ERD](./../roll4-client/public/images/erd.png)
-![ERD](./../roll4-client/public/images/erd_routes.png)
-![ERD](./../roll4-client/public/images/erd_documents.png)
+![ERD](../roll4-client/public/images/erd.png)
+![ERD](../roll4-client/public/images/erd_routes.png)
+![ERD](../roll4-client/public/images/erd_documents.png)
