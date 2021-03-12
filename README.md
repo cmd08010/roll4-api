@@ -5,8 +5,11 @@ Welcome! This is the API for the Roll4Iinitiative application.
 Users can create an account and add new campaigns and entries for your campaigns to track their progress.
 
 ## Roll4 Api
+
 Deployed Server: (https://roll4-initiative.herokuapp.com/)
+
 Front End: (https://cmd08010.github.io/roll4-client/)
+
 Front End Repo: (https://github.com/cmd08010/roll4-client)
 ### Users
 
