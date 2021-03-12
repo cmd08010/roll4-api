@@ -253,7 +253,8 @@ I wanted to create an application that could help me keep track of Dungeons and 
 </tr>
 </table>
 
-### ERD
+## ERD
+
 ![ERD](images/erd.png)
 ![ERD](images/erd_routes.png)
 ![ERD](images/erd_documents.png)
