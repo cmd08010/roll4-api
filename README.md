@@ -5,7 +5,9 @@ Welcome! This is the API for the Roll4Iinitiative application.
 Users can create an account and add new campaigns and entries for your campaigns to track their progress.
 
 ## Roll4 Api
-![Deployed server]: (https://roll4-initiative.herokuapp.com/)
+Deployed Server: (https://roll4-initiative.herokuapp.com/)
+Front End: (https://cmd08010.github.io/roll4-client/)
+Front End Repo: (https://github.com/cmd08010/roll4-client)
 ### Users
 
 
@@ -255,9 +257,9 @@ I wanted to create an application that could help me keep track of Dungeons and 
 
 ## ERD
 
-![ERD](./images/erd.png)
-![ERD](./images/erd_routes.png)
-![ERD](./images/erd_documents.png)
+![ERD](/images/erd.png)
+![ERD](/images/erd_routes.png)
+![ERD](/images/erd_documents.png)
 
 ## Unsolved Problems
 
