@@ -76,8 +76,6 @@ router.get('/home', requireToken, (req, res, next) => {
 // POST /campaigns
 router.post('/campaigns', requireToken, (req, res, next) => {
   // set owner of new campaign to be current user
-  console.log(req.user, "should be coming from passing my token")
-  console.log(req.body, "my req body campaign")
   req.body.campaign.owner = req.user.id
   Campaign.create(req.body.campaign)
     // respond to succesful `create` with status 201 and JSON of new "campaign"
